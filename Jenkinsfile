@@ -13,8 +13,27 @@ pipeline {
     }
 
     stage('Build') {
-      steps {
-        sh '"docker build -t lordagam/node-hello-new:${\'env.BUILD_NUMBER\'} ."'
+      parallel {
+        stage('Build') {
+          steps {
+            sh '"docker build -t lordagam/hello-world-python:${env.BUILD_NUMBER} ."'
+          }
+        }
+
+        stage('') {
+          steps {
+            sh '"docker run -itd --name hello-world-python -p 8080:8080 lordagam/hello-world-python:${env.BUILD_NUMBER}"'
+          }
+        }
+
+        stage('stop') {
+          steps {
+            sh '''"docker stop hello-world-python && docker rm hello-world-python"
+
+'''
+          }
+        }
+
       }
     }
 
