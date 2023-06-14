@@ -14,7 +14,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh '"docker build -t lordagam/node-hello-new:\'${env.BUILD_NUMBER}\' ."'
+        sh '"docker build -t lordagam/node-hello-new:${\'env.BUILD_NUMBER\'} ."'
       }
     }
 
