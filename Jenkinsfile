@@ -16,7 +16,7 @@ pipeline {
       parallel {
         stage('Build') {
           steps {
-            sh '"docker build -t lordagam/hello-world-python:${\'env.BUILD_NUMBER\'} ."'
+            sh '"docker build -t lordagam/hello-world-python:$\'env.BUILD_NUMBER\' ."'
           }
         }
 
