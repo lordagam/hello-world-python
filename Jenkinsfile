@@ -16,11 +16,11 @@ pipeline {
       parallel {
         stage('Build') {
           steps {
-            sh '"docker build -t lordagam/hello-world-python:${env.BUILD_NUMBER} ."'
+            sh '"docker build -t lordagam/hello-world-python:${\'env.BUILD_NUMBER\'} ."'
           }
         }
 
-        stage('') {
+        stage('run') {
           steps {
             sh '"docker run -itd --name hello-world-python -p 8080:8080 lordagam/hello-world-python:${env.BUILD_NUMBER}"'
           }
